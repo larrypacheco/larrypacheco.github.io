@@ -9,7 +9,7 @@
 <meta property="og:description" content="¡Llegó el momento de brillar, bailar y celebrar! Sábado 12 de diciembre, 7:00 p.m.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --oro: #a4832e;
@@ -22,6 +22,8 @@
     --durazno: #f6d9c8;
     --texto: #7a6230;
     --hoja: #a3b596;
+    --rosa-titulo: #c48a93;
+    --carbon: #4f4644;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -97,18 +99,27 @@
   .divisor svg { width: 14px; height: 14px; }
 
   /* ---------- Flores ---------- */
-  .ramo { position: absolute; width: 250px; pointer-events: none; z-index: 1; }
-  .ramo.si { top: -18px; left: -40px; }
-  .ramo.sd { top: -18px; right: -40px; transform: scaleX(-1); }
-  .ramo.ii { bottom: -24px; left: -44px; transform: scaleY(-1); }
-  .ramo.id { bottom: -24px; right: -44px; transform: scale(-1,-1); }
+  .ramo { position: absolute; width: 300px; pointer-events: none; z-index: 1; }
+  .ramo.si { top: -8px; left: -50px; }
+  .ramo.sd { top: -8px; right: -50px; transform: scaleX(-1); }
+  .ramo.ii { bottom: -28px; left: -52px; transform: scaleY(-1); }
+  .ramo.id { bottom: -28px; right: -52px; transform: scale(-1,-1); }
   .ramo.chico { width: 150px; }
 
   /* ---------- Portada ---------- */
-  .portada { padding: 150px 24px 40px; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .portada {
+    padding: 64px 26px 48px; min-height: 100svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Lora', Georgia, serif; color: var(--carbon);
+    background:
+      linear-gradient(to bottom, rgba(255,250,246,0) 80%, var(--crema) 100%),
+      url("assets/acuarela-portada.png") center / 100% 100% no-repeat,
+      var(--crema);
+  }
+
   .corona { width: 120px; margin-bottom: 2px; }
   .nombre { font-size: clamp(5.2rem, 26vw, 7.4rem); line-height: .95; }
-  .apellidos { font-size: 1.02rem; letter-spacing: .34em; margin-top: 4px; color: var(--oro); }
+  .apellidos { font-size: clamp(2.5rem, 12.5vw, 3.2rem); line-height: 1.1; margin-top: -2px; white-space: nowrap; color: var(--oro); }
   .sello {
     position: relative; width: 210px; height: 210px; margin: 38px auto 0;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -149,7 +160,7 @@
   /* ---------- Cuenta regresiva ---------- */
   .cuenta { padding: 30px 28px 0; }
   .arco-wrap { position: relative; max-width: 330px; margin: 0 auto; padding-top: 70px; }
-  .arco-wrap .ramo { width: 200px; }
+  .arco-wrap .ramo { width: 235px; }
   .arco-wrap .ramo.a1 { top: -6px; left: -64px; transform: rotate(-12deg); }
   .arco-wrap .ramo.a2 { top: -6px; right: -64px; transform: scaleX(-1) rotate(-12deg); }
   .arco {
@@ -209,6 +220,13 @@
   /* ---------- Confirmación ---------- */
   .confirmar { padding-bottom: 210px; }
   .confirmar .limite { font-size: .9rem; }
+  .cupos {
+    width: 150px; margin: 22px auto 2px; padding: 14px 10px 10px;
+    border: 1px solid var(--oro-claro); border-radius: 80px 80px 6px 6px;
+    background: rgba(255,255,255,.6); display: flex; flex-direction: column; align-items: center;
+  }
+  .cupos .caps { font-size: .8rem; letter-spacing: .3em; color: var(--oro); }
+  .cupos .num { font-size: 4rem; line-height: 1; }
   .firma { margin-top: 44px; }
   .firma .script { font-size: 2.6rem; display: block; }
 
@@ -248,55 +266,79 @@
     </filter>
     <filter id="acuarela" x="-5%" y="-5%" width="110%" height="110%">
       <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7" result="r"/>
-      <feDisplacementMap in="SourceGraphic" in2="r" scale="5"/>
+      <feDisplacementMap in="SourceGraphic" in2="r" scale="2"/>
     </filter>
     <filter id="resplandor" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="1.2" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 
-    <!-- Pétalo con luz, sombra y filo dorado -->
+    <!-- Sombra profunda del corazón de la rosa -->
+    <radialGradient id="corazon" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="26">
+      <stop offset="0" stop-color="#6e2635" stop-opacity=".55"/>
+      <stop offset=".5" stop-color="#8e3f4c" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#8e3f4c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dentro" gradientUnits="userSpaceOnUse" x1="0" y1="-22" x2="0" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity=".5"/>
+      <stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#7a2f3f" stop-opacity=".32"/>
+    </linearGradient>
+
+    <!-- Pétalo exterior: borde ondulado y enrollado hacia atrás -->
     <g id="petalo">
-      <path d="M0 2C-14-2-30-18-24-36C-20-46-8-48 0-44C8-48 20-46 24-36C30-18 14-2 0 2Z" fill="currentColor"/>
-      <path d="M0 2C-14-2-30-18-24-36C-20-46-8-48 0-44C8-48 20-46 24-36C30-18 14-2 0 2Z" fill="url(#luz)" stroke="url(#oro)" stroke-width=".7" stroke-opacity=".7"/>
-      <path d="M0-4C-2-16-1-30 0-40M-8-8C-12-18-14-28-13-36M8-8C12-18 14-28 13-36" fill="none" stroke="#9c5560" stroke-opacity=".14" stroke-width=".6"/>
+      <path d="M0 2C-16-2-32-16-28-34C-26-42-18-47-10-45C-6-48-2-47 0-45C3-48 8-48 12-46C20-47 29-41 28-33C32-16 16-2 0 2Z" fill="currentColor"/>
+      <path d="M0 2C-16-2-32-16-28-34C-26-42-18-47-10-45C-6-48-2-47 0-45C3-48 8-48 12-46C20-47 29-41 28-33C32-16 16-2 0 2Z" fill="url(#luz)" stroke="#b9787f" stroke-opacity=".35" stroke-width=".6"/>
+      <path d="M-27-33C-25-42-17-46-10-44C-5-47 0-46 0-44C4-47 10-47 13-45C20-46 27-40 27-33C20-38 12-40 0-39C-12-40-20-38-27-33Z" fill="#fff" fill-opacity=".38"/>
+      <path d="M-27-33C-20-38-12-40 0-39C12-40 20-38 27-33" fill="none" stroke="#a8646d" stroke-opacity=".3" stroke-width=".7"/>
+      <path d="M0-4C-2-16-1-28 0-37M-9-8C-14-18-16-26-15-34M9-8C14-18 16-26 15-34" fill="none" stroke="#9c5560" stroke-opacity=".12" stroke-width=".6"/>
     </g>
 
-    <!-- Rosa vista desde arriba: cuatro anillos de pétalos -->
+    <!-- Pétalo interior en forma de copa -->
+    <g id="copa">
+      <path d="M-20 0C-20-14-10-22 0-22C10-22 20-14 20 0C14-10 8-13 0-13C-8-13-14-10-20 0Z" fill="currentColor"/>
+      <path d="M-20 0C-20-14-10-22 0-22C10-22 20-14 20 0C14-10 8-13 0-13C-8-13-14-10-20 0Z" fill="url(#dentro)"/>
+      <path d="M-20 0C-20-14-10-22 0-22C10-22 20-14 20 0" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="1"/>
+      <path d="M20 0C14-10 8-13 0-13C-8-13-14-10-20 0" fill="none" stroke="#7a2f3f" stroke-opacity=".3" stroke-width=".7"/>
+    </g>
+
+    <!-- Rosa: pétalos abiertos por fuera, copas cerradas en espiral hacia el centro -->
     <symbol id="flor" viewBox="-52 -52 104 104">
       <g filter="url(#sombra)">
         <use href="#petalo"/>
-        <use href="#petalo" transform="rotate(51)"/>
-        <use href="#petalo" transform="rotate(103)"/>
-        <use href="#petalo" transform="rotate(154)"/>
-        <use href="#petalo" transform="rotate(206)"/>
-        <use href="#petalo" transform="rotate(257)"/>
-        <use href="#petalo" transform="rotate(309)"/>
+        <use href="#petalo" transform="rotate(58) scale(.96 1.02)"/>
+        <use href="#petalo" transform="rotate(121) scale(1.03 .97)"/>
+        <use href="#petalo" transform="rotate(178) scale(.97 1.03)"/>
+        <use href="#petalo" transform="rotate(240) scale(1.02 .98)"/>
+        <use href="#petalo" transform="rotate(300) scale(.98 1.01)"/>
       </g>
-      <g filter="url(#sombra)" transform="scale(.74)">
-        <use href="#petalo" transform="rotate(26)"/>
-        <use href="#petalo" transform="rotate(86)"/>
+      <g filter="url(#sombra)" transform="scale(.8) rotate(30)">
+        <use href="#petalo"/>
+        <use href="#petalo" transform="rotate(74)"/>
         <use href="#petalo" transform="rotate(146)"/>
-        <use href="#petalo" transform="rotate(206)"/>
-        <use href="#petalo" transform="rotate(266)"/>
-        <use href="#petalo" transform="rotate(326)"/>
+        <use href="#petalo" transform="rotate(218)"/>
+        <use href="#petalo" transform="rotate(290)"/>
       </g>
-      <g filter="url(#sombra)" transform="scale(.5)">
-        <use href="#petalo" transform="rotate(10)"/>
-        <use href="#petalo" transform="rotate(82)"/>
-        <use href="#petalo" transform="rotate(154)"/>
-        <use href="#petalo" transform="rotate(226)"/>
-        <use href="#petalo" transform="rotate(298)"/>
+      <circle r="27" fill="url(#corazon)"/>
+      <g filter="url(#sombra)">
+        <use href="#copa" transform="rotate(10) translate(0 3)"/>
+        <use href="#copa" transform="rotate(82) translate(0 3)"/>
+        <use href="#copa" transform="rotate(154) translate(0 3)"/>
+        <use href="#copa" transform="rotate(226) translate(0 3)"/>
+        <use href="#copa" transform="rotate(298) translate(0 3)"/>
       </g>
-      <g filter="url(#sombra)" transform="scale(.3)">
-        <use href="#petalo" transform="rotate(40)"/>
-        <use href="#petalo" transform="rotate(130)"/>
-        <use href="#petalo" transform="rotate(220)"/>
-        <use href="#petalo" transform="rotate(310)"/>
+      <g filter="url(#sombra)">
+        <use href="#copa" transform="rotate(45) translate(0 2) scale(.68)"/>
+        <use href="#copa" transform="rotate(135) translate(0 2) scale(.68)"/>
+        <use href="#copa" transform="rotate(225) translate(0 2) scale(.68)"/>
+        <use href="#copa" transform="rotate(315) translate(0 2) scale(.68)"/>
       </g>
+      <use href="#copa" transform="rotate(-20) translate(0 1.5) scale(.45)"/>
+      <use href="#copa" transform="rotate(100) translate(0 1.5) scale(.45)"/>
+      <use href="#copa" transform="rotate(220) translate(0 1.5) scale(.45)"/>
       <circle r="4.5" fill="currentColor"/>
-      <circle r="4.5" fill="#8e3f4c" fill-opacity=".3"/>
-      <path d="M0 0c2-2 5 0 4 3s-6 3-7-1 3-8 7-6" fill="none" stroke="#8e3f4c" stroke-opacity=".45" stroke-width=".8" stroke-linecap="round"/>
+      <circle r="4.5" fill="#6e2635" fill-opacity=".4"/>
+      <path d="M0 0c2-2 5 0 4 3s-6 3-7-1 3-8 7-6 7 4 5 9" fill="none" stroke="#6e2635" stroke-opacity=".55" stroke-width=".8" stroke-linecap="round"/>
     </symbol>
 
     <symbol id="hoja" viewBox="0 0 40 80">
@@ -330,12 +372,12 @@
           <g transform="translate(60 190) rotate(215)"><use href="#hoja" x="-10" y="-66" width="20" height="42"/></g>
         </g>
         <!-- rosas -->
-        <use href="#flor" x="150" y="-10" width="96" height="96" color="#f8dccb"/>
-        <use href="#flor" x="-6" y="120" width="92" height="92" color="#f3c6c4"/>
-        <use href="#flor" x="20" y="-6" width="150" height="150" color="#fdf0e6"/>
-        <use href="#flor" x="110" y="52" width="88" height="88" color="#eab0b0"/>
-        <use href="#flor" x="232" y="22" width="56" height="56" color="#f6d2c0"/>
-        <use href="#flor" x="52" y="186" width="50" height="50" color="#fdf0e6"/>
+        <use href="#flor" x="150" y="-10" width="96" height="96" color="#f5cdbd"/>
+        <use href="#flor" x="-6" y="120" width="92" height="92" color="#eeb5b6"/>
+        <use href="#flor" x="20" y="-6" width="150" height="150" color="#fbe4da"/>
+        <use href="#flor" x="110" y="52" width="88" height="88" color="#e29ba1"/>
+        <use href="#flor" x="232" y="22" width="56" height="56" color="#f3c7b4"/>
+        <use href="#flor" x="52" y="186" width="50" height="50" color="#fbe4da"/>
       </g>
       <!-- polvo y destellos dorados -->
       <g fill="url(#oro)">
@@ -364,23 +406,10 @@
 
   <!-- ===== Portada ===== -->
   <section class="portada">
-    <svg class="ramo si"><use href="#ramo"/></svg>
-    <svg class="ramo sd"><use href="#ramo"/></svg>
-
-    <svg class="corona ver" viewBox="0 0 120 70" fill="none" stroke="#b8963f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M14 52L8 22l24 16L60 8l28 30 24-16-6 30z" fill="rgba(217,185,106,.18)"/>
-      <path d="M14 60h92"/>
-      <path d="M36 52c0-10 8-14 12-22M84 52c0-10-8-14-12-22M60 52V30" stroke-width="1.2"/>
-      <g fill="#d9b96a" stroke="none">
-        <circle cx="60" cy="6" r="4"/><circle cx="8" cy="20" r="3.2"/><circle cx="112" cy="20" r="3.2"/>
-        <circle cx="32" cy="36" r="2.4"/><circle cx="88" cy="36" r="2.4"/>
-        <circle cx="30" cy="60" r="2"/><circle cx="45" cy="60" r="2"/><circle cx="60" cy="60" r="2.6"/><circle cx="75" cy="60" r="2"/><circle cx="90" cy="60" r="2"/>
-      </g>
-    </svg>
 
     <h1 class="ver">
       <span class="script nombre">Sophia</span>
-      <span class="caps apellidos" style="display:block">Pacheco Santiz</span>
+      <span class="script apellidos" style="display:block">Pacheco Santiz</span>
     </h1>
 
     <div class="sello ver" aria-label="Mis quince años">
@@ -515,6 +544,10 @@
     <div class="divisor ver"><svg><use href="#rombo"/></svg></div>
     <h2 class="script ver">Confirmación de Asistencia</h2>
     <p class="caps limite ver">Por favor confirmar antes del<br>1 de Diciembre</p>
+    <div class="cupos ver">
+      <span class="caps">Cupos</span>
+      <span class="script num">1</span>
+    </div>
     <a class="boton ver" id="btn-confirmar" target="_blank" rel="noopener" href="#">Confirmar</a>
 
     <div class="firma ver">
