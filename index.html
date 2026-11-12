@@ -106,6 +106,17 @@
   .ramo.id { bottom: -28px; right: -52px; transform: scale(-1,-1); }
   .ramo.chico { width: 150px; }
 
+  /* Ramos extra de la portada */
+  .portada > * { position: relative; z-index: 2; }
+  .portada > .ramo { position: absolute; z-index: 1; }
+  .portada .ramo.pt1 { top: 34px; left: -110px; width: 270px; transform: rotate(28deg); opacity: .9; }
+  .portada .ramo.pt2 { top: 34px; right: -110px; width: 270px; transform: scaleX(-1) rotate(28deg); opacity: .9; }
+  .portada .ramo.pb1 { bottom: 30px; left: -110px; width: 270px; transform: scaleY(-1) rotate(28deg); opacity: .9; }
+  .portada .ramo.pb2 { bottom: 30px; right: -110px; width: 270px; transform: scale(-1,-1) rotate(28deg); opacity: .9; }
+  .portada .ramo.lat { top: 50%; width: 190px; margin-top: -60px; }
+  .portada .ramo.li { left: -120px; transform: rotate(80deg); }
+  .portada .ramo.ld { right: -120px; transform: scaleX(-1) rotate(80deg); }
+
   /* ---------- Portada ---------- */
   .portada {
     padding: 64px 26px 48px; min-height: 100svh;
@@ -406,6 +417,17 @@
 
   <!-- ===== Portada ===== -->
   <section class="portada">
+    <!-- Flores: capa trasera, luego esquinas al frente -->
+    <svg class="ramo pt1"><use href="#ramo"/></svg>
+    <svg class="ramo pt2"><use href="#ramo"/></svg>
+    <svg class="ramo pb1"><use href="#ramo"/></svg>
+    <svg class="ramo pb2"><use href="#ramo"/></svg>
+    <svg class="ramo si"><use href="#ramo"/></svg>
+    <svg class="ramo sd"><use href="#ramo"/></svg>
+    <svg class="ramo ii"><use href="#ramo"/></svg>
+    <svg class="ramo id"><use href="#ramo"/></svg>
+    <svg class="ramo lat li"><use href="#ramo"/></svg>
+    <svg class="ramo lat ld"><use href="#ramo"/></svg>
 
     <h1 class="ver">
       <span class="script nombre">Sophia</span>
